@@ -59,6 +59,10 @@ HashSet :: struct (Key_Type: Type,
         }
     }
 
+    // Reserved hashes for storage adapters; live entries have hash >= FIRST_VALID_HASH.
+    EMPTY_HASH :: 0;
+    REMOVED_HASH :: 1;
+    FIRST_VALID_HASH :: 2;
     SIZE_MIN :: 32;
     MAX_SLOTS :: #run min(0x7fffffffffffffff / size_of(Entry), 0x7fffffffffffffff / 100);
 }
@@ -208,9 +212,10 @@ for_expansion :: (set: *$T/HashSet, body: Code, flags: For_Flags) #expand {
 #import "Basic";
 #import "Hash";
 
-EMPTY_HASH :: 0;
-REMOVED_HASH :: 1;
-FIRST_VALID_HASH :: 2;
+EMPTY_HASH :: HashSet(int).EMPTY_HASH;
+REMOVED_HASH :: HashSet(int).REMOVED_HASH;
+FIRST_VALID_HASH :: HashSet(int).FIRST_VALID_HASH;
+
 
 hash_key :: (set: HashSet, key: set.Key_Type) -> u32 {
     hash := set.hash_function(key);

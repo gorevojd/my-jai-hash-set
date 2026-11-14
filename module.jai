@@ -1,6 +1,6 @@
 /*
     A key-only hash set with the default hashing and comparison conventions of Hash_Table.
-    Import with #import "MyBasic/MyHashSet"; a default-initialized HashSet is ready to use.
+    Import with #import "my-jai-hash-set"; a default-initialized HashSet is ready to use.
     Keys are copied by value; referenced string bytes and other pointed-to data remain caller-owned.
     Equal keys must have equal hashes, and key identity must remain unchanged while stored.
     Custom comparison must be an equivalence relation (raw NaNs are unsuitable keys).
